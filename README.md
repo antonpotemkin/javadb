@@ -6,5 +6,9 @@ links
 
 development plan  
 1 - ~~simple key value storage~~  
-2 - memory cache for storage file with shifted  
-3 - ss tables  
+2 - ~~memory cache for storage file with shifted~~
+3 - storage byte on the disk
+4 - ss tables  
+5 - move full log file to ssTable file, create new file, remove old log file
+6 - compaction file into 1 file
+7 - recovery process from log file to Memtable after crashed app
