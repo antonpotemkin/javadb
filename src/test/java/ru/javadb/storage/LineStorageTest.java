@@ -10,9 +10,9 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class StorageTest {
+class LineStorageTest {
     private static final String PATH = "./test";
-    private static final Storage STORAGE = new Storage(PATH);
+    private static final LineStorage STORAGE = new LineStorage(PATH);
     private final String key1 = "key1";
     private final String key2 = "key2";
     private final String value1 = "value1";
@@ -53,7 +53,7 @@ class StorageTest {
     public void brokenCacheTest() throws NoSuchFieldException, IllegalAccessException {
         Field declaredField = STORAGE.getClass().getDeclaredField("memTable");
         declaredField.setAccessible(true);
-        MemTable brokenCache = new MemTable();
+        MemTable<Integer> brokenCache = new MemTable<>();
         brokenCache.put(key2, 1);
         declaredField.set(STORAGE, brokenCache);
         assertThrows(RuntimeException.class, () -> STORAGE.get(key2));
